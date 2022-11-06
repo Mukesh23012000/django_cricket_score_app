@@ -46,6 +46,7 @@ def time():
 def dates():
     today = date.today()
     d2 = today.strftime("%B %d, %Y")
+    return d2
 def check(request):
     current_time = time()
     d2 = dates()
