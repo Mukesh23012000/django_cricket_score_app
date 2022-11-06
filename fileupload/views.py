@@ -35,13 +35,13 @@ def thank(request):
     return render(request,'thank.html')
 
 def time():
-    t = datetime.now(timezone("Asia/Kolkata")).strftime("%H:%M:%S")
+    t = datetime.now(timezone("Asia/Kolkata")).strftime("%H:%M")
     a = int(datetime.now(timezone("Asia/Kolkata")).strftime('%H'))
     if a<=12:
         current_time = t+" A.M"
     else:
         b = a-12
-        current_time=str(b)+datetime.now(timezone("Asia/Kolkata")).strftime(':%M:%S')+" P.M"
+        current_time=str(b)+datetime.now(timezone("Asia/Kolkata")).strftime(':%M')+" P.M"
     return current_time
 def dates():
     today = date.today()
