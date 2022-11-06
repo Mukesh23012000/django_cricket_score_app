@@ -5,15 +5,10 @@ import requests
 from bs4 import BeautifulSoup
 
 def index(request):
-    t = datetime.now(timezone("Asia/Kolkata")).strftime("%H:%M:%S")
-    a = int(datetime.now(timezone("Asia/Kolkata")).strftime('%H'))
-    if a<=12:
-        current_time = t+" A.M"
-    else:
-        b = a-12
-        current_time=str(b)+datetime.now(timezone("Asia/Kolkata")).strftime(':%M:%S')+" P.M"
+    current_time = time()
+    d2 = dates()
     a = cricket()
-    return render(request,'index.html',{'time':current_time,'a':a})
+    return render(request,'index.html',{'time':current_time,'a':a,'date':d2})
 def cricket():
     url = "http://static.cricinfo.com/rss/livescores.xml"
 
@@ -39,7 +34,7 @@ def cricket():
 def thank(request):
     return render(request,'thank.html')
 
-def check(request):
+def time():
     t = datetime.now(timezone("Asia/Kolkata")).strftime("%H:%M:%S")
     a = int(datetime.now(timezone("Asia/Kolkata")).strftime('%H'))
     if a<=12:
@@ -47,8 +42,13 @@ def check(request):
     else:
         b = a-12
         current_time=str(b)+datetime.now(timezone("Asia/Kolkata")).strftime(':%M:%S')+" P.M"
+    return current_time
+def dates():
     today = date.today()
     d2 = today.strftime("%B %d, %Y")
+def check(request):
+    current_time = time()
+    d2 = dates()
     a = cricket()
     ch = ["India","Afghanistan","Pakistan","Australia","Sri lanka","Bangladesh","England","West Indies","South Africa","Zimbabwe","New Zealand"]
     b =[]
